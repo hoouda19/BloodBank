@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/container_tap.dart';
 import '../widgets/appbar_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,50 +14,90 @@ class HomePage extends StatelessWidget {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Expanded(flex: 3, child: AppbarWidget()), //AppBar Widget
+                const Expanded(flex: 4, child: AppbarWidget()), //AppBar Widget
                 Expanded(
-                    flex: 4,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Container(
-                              color: Colors.redAccent,
-                              height: 100,
-                              width: 100,
-                            ),
-                            Container(
-                              color: Colors.redAccent,
-                              height: 100,
-                              width: 100,
-                            )
-                          ],
+                  flex: 8,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          //ContainerMariem
+                          homeContainerTap(
+                            image: 'TAPER 2',
+                            text: 'ابحث عن متبرع',
+                            context: context,
+                            onTap: () {},
+                          ),
+                          homeContainerTap(
+                              image: 'TAPER 2',
+                              text: 'اتبرع بالدم',
+                              context: context,
+                              onTap: () {}),
+                        ],
+                      ),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03),
+                      homeContainerTap(
+                          image: 'TAPER 3',
+                          text: 'مشاركة التطبيق',
+                          context: context,
+                          onTap: () {
+                            print('object');
+                          }),
+                      SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.03),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.redAccent.shade200,
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    spreadRadius: 2.5,
+                                    blurRadius: 20),
+                              ]),
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          width: MediaQuery.of(context).size.width * 0.35,
+                          child: Center(
+                              child: Text(
+                            'نصائح وارشادات',
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          )),
                         ),
-                        Container(
-                          color: Colors.redAccent,
-                          height: 100,
-                          width: 100,
-                        ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
+
                 Expanded(
-                    flex: 3,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          color: Colors.redAccent,
-                          height: 100,
-                          width: 100,
-                        ),
-                        Container(
-                          color: Colors.redAccent,
-                          height: 100,
-                          width: 100,
-                        )
-                      ],
-                    ))
+                  flex: 1,
+                  child: InkWell(
+                    onTap: () {},
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.redAccent.shade200,
+                          borderRadius: BorderRadius.circular(25),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Colors.black12,
+                                spreadRadius: 2.5,
+                                blurRadius: 20),
+                          ]),
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      width: MediaQuery.of(context).size.width * 0.35,
+                      child: Center(
+                          child: Text(
+                        'نصائح وارشادات',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                  ),
+                )
               ]),
         ),
       ),

@@ -1,4 +1,3 @@
-import 'package:bloodbank/view/routes/onboard_page_view.dart';
 import 'package:flutter/material.dart';
 
 import 'view/routes/home_page.dart';
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => onboardPageView(),
+        '/': (context) => const HomePage(),
       },
     );
   }
