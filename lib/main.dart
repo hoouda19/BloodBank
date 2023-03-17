@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'view/routes/can_blood_page.dart';
 import 'view/routes/find_donor.dart';
 import 'view/routes/onboard_page_view.dart';
 import 'view/routes/singup_screen.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => const HomePage(),
         SignUpPage.routeName: (context) => const SignUpPage(),
         FindDonor.routeName: (context) => const FindDonor(),
+        CanBlood.routeName: (context) => const CanBlood(),
       },
     );
   }

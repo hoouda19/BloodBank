@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/lable_setting.dart';
 import '../widgets/normal_button.dart';
+import 'can_blood_page.dart';
 
 class FindDonor extends StatelessWidget {
   static const routeName = 'finddonor';
@@ -118,9 +119,9 @@ class FindDonor extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.08,
                   ),
                   TextButton(
-                    child: const Text('هل تريد معرفة توافق نقل الدم ؟'),
-                    onPressed: () {},
-                  ),
+                      child: const Text('هل تريد معرفة توافق نقل الدم ؟'),
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(CanBlood.routeName)),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.08,
                   ),
