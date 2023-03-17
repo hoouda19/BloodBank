@@ -1,15 +1,18 @@
-import 'package:bloodbank/view/routes/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:dots_indicator/dots_indicator.dart';
+
+import 'package:bloodbank/view/routes/home_page.dart';
 import '../routes/onboard_page_view.dart';
+import '../routes/singup_screen.dart';
+import 'normal_button.dart';
 
 class onBoardContainer extends StatefulWidget {
-  final String title;
   final String subTitle;
   final String image;
-  final String floatimg;
+  final int currentpage;
+
   final bool sec;
-  const onBoardContainer(
-      this.title, this.subTitle, this.image, this.floatimg, this.sec,
+  const onBoardContainer(this.subTitle, this.image, this.sec, this.currentpage,
       {Key? key})
       : super(key: key);
 
@@ -33,18 +36,30 @@ class _onBoardContainerState extends State<onBoardContainer> {
         color: Colors.white,
         alignment: Alignment.center,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(
+                    onPressed: () => Navigator.of(context)
+                        .pushReplacementNamed(HomePage.routeName),
+                    child: const Text(
+                      'تخطي',
+                      style: TextStyle(color: Colors.black),
+                    ))
+              ],
+            ),
             Container(
               width: 300,
-              height: mediaSize.height * 1 / 2,
+              height: mediaSize.height * 1 / 3,
               child: Image.asset(
                 widget.image,
                 //fit: BoxFit.cover,
               ),
             ),
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               decoration: const BoxDecoration(
                 // color: Colors.greenAccent,
                 borderRadius: BorderRadius.all(
@@ -55,68 +70,113 @@ class _onBoardContainerState extends State<onBoardContainer> {
               width: double.infinity,
               //   color: Colors.green,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 15.0),
-                    child: Text(
-                      widget.title,
-                      style: const TextStyle(
-                        fontSize: 45,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    widget.subTitle,
-                    style: const TextStyle(
-                      fontSize: 30,
-                      color: Colors.red,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => HomePage()));
-                    },
-                    //backgroundColor: Colors.greenAccent,
-                    child: Text(
-                      widget.floatimg,
-                      style: TextStyle(color: Colors.red, fontSize: 20),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: widget.sec
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                child: Text('رجوع'),
-                                onPressed: () => onboardPageView.contrpage
-                                    .nextPage(
-                                        duration: Duration(milliseconds: 400),
-                                        curve: Curves.easeIn),
-                              ),
-                              MaterialButton(
-                                onPressed: () => onboardPageView.contrpage
-                                    .nextPage(
-                                        duration: Duration(milliseconds: 400),
-                                        curve: Curves.easeIn),
-                                color: Colors.blue,
-                                textColor: Colors.white,
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 24,
+                  Column(
+                    children: [
+                      Container(
+                        height: mediaSize.height * 1 / 5,
+                        child: Column(
+                          children: [
+                            Expanded(
+                              flex: 8,
+                              child: Text(
+                                widget.subTitle,
+                                style: const TextStyle(
+                                  height: 1.5,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
                                 ),
-                                padding: EdgeInsets.all(16),
-                                shape: CircleBorder(),
+                                textAlign: TextAlign.center,
                               ),
-                            ],
-                          )
-                        : Text(''),
-                  )
+                            ),
+                            Expanded(
+                              flex: 2,
+                              child: DotsIndicator(
+                                dotsCount: 3,
+                                position: widget.currentpage.toDouble(),
+                                decorator: DotsDecorator(
+                                  size: const Size.square(9.0),
+                                  activeSize: const Size(35.0, 9.0),
+                                  color: Colors.red.withOpacity(0.3),
+                                  activeColor: Color.fromARGB(255, 231, 80, 90),
+                                  activeShape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5.0)),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: widget.sec
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextButton(
+                                  child: const Text(
+                                    'رجوع',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  onPressed: () => onboardPageView.contrpage
+                                      .previousPage(
+                                          duration:
+                                              const Duration(milliseconds: 400),
+                                          curve: Curves.easeIn),
+                                ),
+                                MaterialButton(
+                                  onPressed: () => onboardPageView.contrpage
+                                      .nextPage(
+                                          duration:
+                                              const Duration(milliseconds: 400),
+                                          curve: Curves.easeIn),
+                                  color: Color.fromARGB(255, 231, 80, 90),
+                                  textColor: Colors.white,
+                                  padding: const EdgeInsets.all(10),
+                                  shape: const CircleBorder(),
+                                  child: const Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 15,
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  flex: 5,
+                                  child: NormalButton(
+                                    text: 'لدي حساب',
+                                    fun: () {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed(
+                                              SignUpPage.routeName);
+                                    },
+                                    textcolor: Color.fromARGB(255, 231, 80, 90),
+                                    bakcgroundcolor: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: mediaSize.height * 1 / 25,
+                                ),
+                                Expanded(
+                                  flex: 5,
+                                  child: NormalButton(
+                                    text: 'تسجيل الدخول',
+                                    fun: () {
+                                      Navigator.of(context)
+                                          .pushReplacementNamed(
+                                              SignUpPage.routeName);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ))
                 ],
               ),
             ),

@@ -7,28 +7,30 @@ class onboardPageView extends StatelessWidget {
   onboardPageView({Key? key}) : super(key: key);
 
   List<Onboardmodel> onBoradList = [
-    Onboardmodel('Resturant App', 'Welcom To Resturant App',
-        'asset/images/onb1.png', '', true),
-    // Onboardmodel('Coffee App', 'In This App You Can Buy Any Coffee',
-    //     'assets/onboardimage/pngwing1.png'),
-    Onboardmodel('Resturant App', 'The Best Price', 'asset/images/onb1.png',
-        'START', false)
+    Onboardmodel(
+        'ابحث عن متبرعين متاحين بالقرب منك .', 'asset/images/onb1.png', true),
+    Onboardmodel('لكي تكون متبرعا مسؤولا ،يجب أن تحصل على فحص طبي.',
+        'asset/images/onb2.png', true),
+    Onboardmodel(
+        'قطره من دمك تنقذ \n حياه انسان ', 'asset/images/onb3.png', false)
   ];
   static final contrpage = PageController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: PageView.builder(
-      itemBuilder: (context, index) => onBoardContainer(
-        onBoradList[index].title,
-        onBoradList[index].subtitle,
-        onBoradList[index].image,
-        onBoradList[index].floatimg,
-        onBoradList[index].sec,
-      ),
-      itemCount: onBoradList.length,
-      controller: contrpage,
-    ));
+    return Stack(
+      children: [
+        Scaffold(
+            body: PageView.builder(
+          itemBuilder: (context, index) => onBoardContainer(
+              onBoradList[index].subtitle,
+              onBoradList[index].image,
+              onBoradList[index].sec,
+              index),
+          itemCount: onBoradList.length,
+          controller: contrpage,
+        )),
+      ],
+    );
   }
 }

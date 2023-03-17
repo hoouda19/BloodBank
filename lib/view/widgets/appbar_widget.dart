@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class AppbarWidget extends StatelessWidget {
-  const AppbarWidget({super.key});
+  final Widget picture;
+  final bool isButton;
+  final double round;
+  const AppbarWidget(
+      {super.key,
+      required this.picture,
+      required this.isButton,
+      this.round = 200});
 
   @override
   Widget build(BuildContext context) {
@@ -11,14 +19,30 @@ class AppbarWidget extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.pinkAccent.withOpacity(.2),
           // border: Border.all(),
-          borderRadius: const BorderRadius.only(
-            bottomLeft: Radius.circular(200),
-            bottomRight: Radius.circular(200),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(round),
+            bottomRight: Radius.circular(round),
           ),
         ),
-        child: Image.asset(
-          'name',
-          height: MediaQuery.of(context).size.height * 0.03, //image size
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            isButton
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      IconButton(
+                        onPressed: () => Scaffold.of(context).openEndDrawer(),
+                        icon: const FaIcon(
+                          FontAwesomeIcons.bars,
+                          color: Colors.red,
+                        ),
+                      )
+                    ],
+                  )
+                : Container(),
+            picture
+          ],
         ));
   }
 }
