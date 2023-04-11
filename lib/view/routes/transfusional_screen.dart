@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class CanBlood extends StatelessWidget {
-  static const routeName = '/canblood';
-  const CanBlood({super.key});
+class TransfusionalScreen extends StatelessWidget {
+  static const routeName = '/transfusionalscreen';
+  const TransfusionalScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

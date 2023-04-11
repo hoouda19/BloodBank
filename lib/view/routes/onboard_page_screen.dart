@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 import '../../model/onboard_page_model.dart';
-import '../widgets/onBoardcontainer.dart';
+import '../widgets/onboard_container.dart';
 
-class onboardPageView extends StatelessWidget {
-  onboardPageView({Key? key}) : super(key: key);
+class onboardScreen extends StatelessWidget {
+  onboardScreen({Key? key}) : super(key: key);
 
   List<Onboardmodel> onBoradList = [
     Onboardmodel(

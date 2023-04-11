@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
-import 'package:bloodbank/view/routes/home_page.dart';
-import '../routes/onboard_page_view.dart';
+import 'package:bloodbank/view/routes/home_screen.dart';
+import '../routes/login_screen.dart';
+import '../routes/onboard_page_screen.dart';
 import '../routes/singup_screen.dart';
-import 'normal_button.dart';
+import 'button_widget.dart';
 
 class onBoardContainer extends StatefulWidget {
   final String subTitle;
@@ -43,7 +44,7 @@ class _onBoardContainerState extends State<onBoardContainer> {
               children: [
                 TextButton(
                     onPressed: () => Navigator.of(context)
-                        .pushReplacementNamed(HomePage.routeName),
+                        .pushReplacementNamed(HomeScreen.routeName),
                     child: const Text(
                       'تخطي',
                       style: TextStyle(color: Colors.black),
@@ -100,7 +101,8 @@ class _onBoardContainerState extends State<onBoardContainer> {
                                   size: const Size.square(9.0),
                                   activeSize: const Size(35.0, 9.0),
                                   color: Colors.red.withOpacity(0.3),
-                                  activeColor: Color.fromARGB(255, 231, 80, 90),
+                                  activeColor:
+                                      const Color.fromARGB(255, 231, 80, 90),
                                   activeShape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5.0)),
                                 ),
@@ -122,14 +124,14 @@ class _onBoardContainerState extends State<onBoardContainer> {
                                     'رجوع',
                                     style: TextStyle(color: Colors.black),
                                   ),
-                                  onPressed: () => onboardPageView.contrpage
+                                  onPressed: () => onboardScreen.contrpage
                                       .previousPage(
                                           duration:
                                               const Duration(milliseconds: 400),
                                           curve: Curves.easeIn),
                                 ),
                                 MaterialButton(
-                                  onPressed: () => onboardPageView.contrpage
+                                  onPressed: () => onboardScreen.contrpage
                                       .nextPage(
                                           duration:
                                               const Duration(milliseconds: 400),
@@ -150,14 +152,14 @@ class _onBoardContainerState extends State<onBoardContainer> {
                               children: [
                                 Expanded(
                                   flex: 5,
-                                  child: NormalButton(
+                                  child: ButtonWidget(
                                     text: 'لدي حساب',
                                     fun: () {
                                       Navigator.of(context)
-                                          .pushReplacementNamed(
-                                              SignUpPage.routeName);
+                                          .pushNamed(LogInScreen.routeName);
                                     },
-                                    textcolor: Color.fromARGB(255, 231, 80, 90),
+                                    textcolor:
+                                        const Color.fromARGB(255, 231, 80, 90),
                                     bakcgroundcolor: Colors.white,
                                   ),
                                 ),
@@ -166,12 +168,11 @@ class _onBoardContainerState extends State<onBoardContainer> {
                                 ),
                                 Expanded(
                                   flex: 5,
-                                  child: NormalButton(
-                                    text: 'تسجيل الدخول',
+                                  child: ButtonWidget(
+                                    text: 'حساب جديد',
                                     fun: () {
                                       Navigator.of(context)
-                                          .pushReplacementNamed(
-                                              SignUpPage.routeName);
+                                          .pushNamed(SingUpScreen.routeName);
                                     },
                                   ),
                                 ),

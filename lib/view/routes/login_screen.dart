@@ -1,19 +1,19 @@
-import 'package:bloodbank/view/routes/check_registration.dart';
+import 'package:bloodbank/view/routes/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:bloodbank/view/widgets/lable_setting.dart';
 import '../widgets/button_widget.dart';
-import 'login_screen.dart';
+import '../widgets/lable_setting.dart';
+import 'singup_screen.dart';
 
-class SingUpScreen extends StatelessWidget {
-  const SingUpScreen({Key? key}) : super(key: key);
-  static const routeName = '/singupscreen';
+class LogInScreen extends StatelessWidget {
+  static const routeName = '/loginscreen';
+
+  const LogInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-          child: Stack(
+      body: Stack(
         children: [
           Image.asset(
             'asset/images/shapes.png',
@@ -39,34 +39,18 @@ class SingUpScreen extends StatelessWidget {
                               fontSize: 25, fontWeight: FontWeight.w700),
                         )),
                     lableSetting(
-                        lable: 'الاسم الكامل',
-                        initText: 'نيفين ياسر محمد',
-                        validator: (val) {}),
-                    lableSetting(
                         lable: 'عنوان البريد الالكترونى ',
-                        initText: 'viola****@gmail.com',
+                        initText: 'violamm12gmail.com',
                         validator: (val) {}),
                     lableSetting(
                         lable: 'كلمة المرور',
                         initText: '0514651654',
                         validator: (val) {},
                         obsecure: true),
-                    lableSetting(
-                        lable: 'رقم الموبايل ',
-                        initText: '01234567890',
-                        validator: (val) {}),
-                    lableSetting(
-                        lable: 'فصيله الدم ',
-                        initText: 'A+',
-                        validator: (val) {}),
-                    lableSetting(
-                        lable: 'المدينه',
-                        initText: 'طلخا',
-                        validator: (val) {}),
                     TextButton(
-                        child: const Text('لدي حساب'),
+                        child: const Text('لا امتلك حساب . تسجيل حساب جديد'),
                         onPressed: () => Navigator.of(context)
-                            .pushNamed(LogInScreen.routeName)),
+                            .pushNamed(SingUpScreen.routeName)),
                   ],
                 ),
                 Row(
@@ -75,8 +59,7 @@ class SingUpScreen extends StatelessWidget {
                     ButtonWidget(
                       text: 'تسجيل الدخول',
                       fun: () {
-                        Navigator.of(context)
-                            .pushNamed(CheckRegistration.routeName);
+                        Navigator.of(context).pushNamed(HomeScreen.routeName);
                       },
                     ),
                   ],
@@ -85,7 +68,7 @@ class SingUpScreen extends StatelessWidget {
             ),
           )
         ],
-      )),
+      ),
     );
   }
 }

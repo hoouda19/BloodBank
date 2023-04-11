@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 
-class NormalButton extends StatelessWidget {
+class ButtonWidget extends StatelessWidget {
   final String text;
   final Color textcolor;
   final Color side;
   final Color bakcgroundcolor;
   final VoidCallback fun;
-  const NormalButton({
-    super.key,
-    required this.text,
-    required this.fun,
-    this.textcolor = Colors.white,
-    this.side = const Color.fromARGB(255, 231, 80, 90),
-    this.bakcgroundcolor = const Color.fromARGB(255, 231, 80, 90),
-  });
+  final bool clickable;
+  const ButtonWidget(
+      {super.key,
+      required this.text,
+      required this.fun,
+      this.textcolor = Colors.white,
+      this.side = const Color.fromARGB(255, 231, 80, 90),
+      this.bakcgroundcolor = const Color.fromARGB(255, 231, 80, 90),
+      this.clickable = true});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         height: MediaQuery.of(context).size.height * 1 / 15,
         child: ElevatedButton(
-          onPressed: fun,
+          onPressed: clickable ? fun : null,
+
           style: ElevatedButton.styleFrom(
             backgroundColor: bakcgroundcolor,
-            side: BorderSide(width: 2.0, color: side),
+            side: clickable
+                ? BorderSide(width: 2.0, color: side)
+                : BorderSide(color: Colors.grey),
             shape: const StadiumBorder(),
           ),
           // padding: EdgeInsets.all(16),

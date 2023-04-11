@@ -3,85 +3,22 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../widgets/container_tap.dart';
-import '../widgets/appbar_widget.dart';
+import '../widgets/appbar_homepage_widget.dart';
 import '../widgets/drawer_button.dart';
-import 'find_donor.dart';
+import '../widgets/drawer_widget.dart';
+import 'find_donor_screen.dart';
+import 'massenger_screen.dart';
+import 'new_donor_screen.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-  static const routeName = '/hommepage';
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+  static const routeName = '/homescreen';
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        endDrawer: Container(
-          color: Colors.white,
-          width: MediaQuery.of(context).size.width * 3 / 5,
-          child: Column(
-            children: [
-              AppbarWidget(
-                round: 100,
-                isButton: false,
-                picture: Padding(
-                  padding:
-                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 2,
-                              color: const Color.fromARGB(255, 231, 80, 90),
-                            ),
-                            borderRadius: BorderRadius.circular(100)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.asset(
-                            'asset/images/person.png',
-
-                            // height: MediaQuery.of(context).size.height * 0.03, //image size
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.width * 0.02,
-                      ),
-                      const Text(
-                        'نيفين ياسر محمد',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              Padding(
-                padding:
-                    EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.30,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      DrawerButton(
-                          text: 'الرسائل',
-                          icon: Icons.messenger_outline_rounded),
-                      DrawerButton(
-                          text: 'الطلبات', icon: Icons.bakery_dining_rounded),
-                      DrawerButton(text: 'الاعدادات', icon: Icons.settings),
-                      DrawerButton(
-                          text: 'تسجيل خروج', icon: Icons.logout_rounded),
-                    ],
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
+        endDrawer: const DrawerWidget(),
         backgroundColor: Colors.white,
         body: SizedBox(
           width: double.infinity,
@@ -90,7 +27,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Expanded(
                     flex: 4,
-                    child: AppbarWidget(
+                    child: AppbarHomePageWidget(
                       isButton: true,
                       picture: Image.asset(
                         'asset/images/homebar.png',
@@ -106,19 +43,21 @@ class HomePage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
+                          homeContainerTap(
+                            image: 'asset/images/home1.png',
+                            text: 'اتبرع بالدم',
+                            context: context,
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(NewDonorScreen.routeName),
+                          ),
                           //ContainerMariem
                           homeContainerTap(
                             image: 'asset/images/home.png',
                             text: 'ابحث عن متبرع',
                             context: context,
                             onTap: () => Navigator.of(context)
-                                .pushNamed(FindDonor.routeName),
+                                .pushNamed(FindDonorScreen.routeName),
                           ),
-                          homeContainerTap(
-                              image: 'asset/images/home1.png',
-                              text: 'اتبرع بالدم',
-                              context: context,
-                              onTap: () {}),
                         ],
                       ),
                       SizedBox(
