@@ -1,4 +1,5 @@
 import 'package:bloodbank/view/routes/home_screen.dart';
+import 'package:bloodbank/view/routes/main_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/button_widget.dart';
@@ -59,7 +60,7 @@ class LogInScreen extends StatelessWidget {
                     ButtonWidget(
                       text: 'تسجيل الدخول',
                       fun: () {
-                        Navigator.of(context).pushNamed(HomeScreen.routeName);
+                        Navigator.of(context).pushNamed(MainScreen.routeName);
                       },
                     ),
                   ],

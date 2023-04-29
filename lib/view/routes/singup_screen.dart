@@ -1,4 +1,4 @@
-import 'package:bloodbank/view/routes/check_registration.dart';
+import 'package:bloodbank/view/routes/check_registration_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bloodbank/view/widgets/lable_setting.dart';
@@ -76,7 +76,7 @@ class SingUpScreen extends StatelessWidget {
                       text: 'تسجيل الدخول',
                       fun: () {
                         Navigator.of(context)
-                            .pushNamed(CheckRegistration.routeName);
+                            .pushNamed(CheckRegistrationScreen.routeName);
                       },
                     ),
                   ],

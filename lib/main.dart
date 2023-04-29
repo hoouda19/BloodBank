@@ -1,12 +1,17 @@
-import 'package:bloodbank/view/routes/chat_screen.dart';
-import 'package:bloodbank/view/routes/login_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'view/routes/check_registration.dart';
+import 'view/routes/chat_screen.dart';
+import 'view/routes/login_screen.dart';
+import 'view/routes/main_screen.dart';
+import 'view/routes/check_registration_screen.dart';
+import 'view/routes/instruction_screen.dart';
+import 'view/routes/messenge_screen.dart';
+import 'view/routes/nearby_hospitals_details_screen.dart';
+import 'view/routes/nearby_hospitals_screen.dart';
 import 'view/routes/new_donor_screen.dart';
 import 'view/routes/transfusional_screen.dart';
 import 'view/routes/find_donor_screen.dart';
-import 'view/routes/massenger_screen.dart';
+import 'view/routes/request_screen.dart';
 import 'view/routes/onboard_page_screen.dart';
 import 'view/routes/search_volunteer_screen.dart';
 import 'view/routes/singup_screen.dart';
@@ -47,17 +52,25 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => onboardScreen(),
+        MainScreen.routeName: (context) => const MainScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
+        NearbyHospitalsScreen.routeName: (context) =>
+            const NearbyHospitalsScreen(),
         SingUpScreen.routeName: (context) => const SingUpScreen(),
-        FindDonorScreen.routeName: (context) => const FindDonorScreen(),
+        FindDonorScreen.routeName: (context) => FindDonorScreen(),
         TransfusionalScreen.routeName: (context) => const TransfusionalScreen(),
         ChatScreen.routeName: (context) => const ChatScreen(),
         SearchVolunteerScreen.routeName: (context) =>
             const SearchVolunteerScreen(),
-        MessengerScreen.routeName: (context) => const MessengerScreen(),
+        RequestScreen.routeName: (context) => const RequestScreen(),
         LogInScreen.routeName: (context) => const LogInScreen(),
-        CheckRegistration.routeName: (context) => const CheckRegistration(),
+        CheckRegistrationScreen.routeName: (context) =>
+            const CheckRegistrationScreen(),
         NewDonorScreen.routeName: (context) => const NewDonorScreen(),
+        MessengeScreen.routeName: (context) => const MessengeScreen(),
+        InstructionsScreen.routeName: (context) => const InstructionsScreen(),
+        NearbyHospitalsDetailsScreen.routeName: (context) =>
+            const NearbyHospitalsDetailsScreen(),
       },
     );
   }

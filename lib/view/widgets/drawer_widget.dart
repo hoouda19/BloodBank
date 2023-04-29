@@ -1,8 +1,11 @@
-import 'package:bloodbank/view/widgets/drawer_button.dart';
 import 'package:flutter/material.dart';
 
-import '../routes/massenger_screen.dart';
+import '../routes/login_screen.dart';
+import '../routes/messenge_screen.dart';
+import '../routes/request_screen.dart';
+import '../routes/search_volunteer_screen.dart';
 import 'appbar_homepage_widget.dart';
+import 'drawer_button.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -56,23 +59,29 @@ class DrawerWidget extends StatelessWidget {
             child: SizedBox(
               height: MediaQuery.of(context).size.height * 0.30,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  InkWell(
-                    child: const DrawerButton(
-                        text: 'الرسائل', icon: Icons.messenger_outline_rounded),
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(MessengerScreen.routeName),
+                  DrawerButton(
+                    text: 'الرسائل',
+                    icon: Icons.messenger_outline_rounded,
+                    ontap: () => Navigator.of(context)
+                        .pushNamed(MessengeScreen.routeName),
                   ),
-                  const DrawerButton(
-                      text: 'الطلبات', icon: Icons.bakery_dining_rounded),
-                  const DrawerButton(text: 'الاعدادات', icon: Icons.settings),
-                  InkWell(
-                    child: const DrawerButton(
-                        text: 'تسجيل خروج', icon: Icons.logout_rounded),
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(MessengerScreen.routeName),
-                  ),
+                  DrawerButton(
+                      text: 'الطلبات',
+                      icon: Icons.person_add_alt,
+                      ontap: () => Navigator.of(context)
+                          .pushNamed(RequestScreen.routeName)),
+                  // DrawerButton(
+                  //     text: 'مشاركة التطبيق',
+                  //     icon: Icons.settings,
+                  //     ontap: () => Navigator.of(context)
+                  //         .pushNamed(SearchVolunteerScreen.routeName)),
+                  DrawerButton(
+                      text: 'تسجيل خروج',
+                      icon: Icons.logout_rounded,
+                      ontap: () => Navigator.of(context)
+                          .pushNamed(LogInScreen.routeName)),
                 ],
               ),
             ),

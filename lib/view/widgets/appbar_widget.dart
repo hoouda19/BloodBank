@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppbarWidget extends StatelessWidget {
   final String text;
-  const AppbarWidget({super.key, required this.text});
+  final bool isback;
+  const AppbarWidget({super.key, required this.text, this.isback = true});
 
   @override
   Widget build(BuildContext context) {
@@ -21,12 +22,14 @@ class AppbarWidget extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            IconButton(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                )),
+            isback
+                ? IconButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ))
+                : Container(),
             Text(
               text,
               style: const TextStyle(

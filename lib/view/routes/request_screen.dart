@@ -3,8 +3,8 @@ import 'package:bloodbank/view/routes/search_volunteer_screen.dart';
 import 'package:bloodbank/view/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
-class MessengerScreen extends StatelessWidget {
-  const MessengerScreen({Key? key}) : super(key: key);
+class RequestScreen extends StatelessWidget {
+  const RequestScreen({Key? key}) : super(key: key);
   static const routeName = '/messengerscreen';
 
   @override
@@ -143,7 +143,7 @@ class MessengerScreen extends StatelessWidget {
                   ),
                 ),
             separatorBuilder: (_, index) => SizedBox(),
-            itemCount: 5),
+            itemCount: 3),
       ),
     );
   }

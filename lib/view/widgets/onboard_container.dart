@@ -1,3 +1,4 @@
+import 'package:bloodbank/view/routes/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
@@ -44,7 +45,7 @@ class _onBoardContainerState extends State<onBoardContainer> {
               children: [
                 TextButton(
                     onPressed: () => Navigator.of(context)
-                        .pushReplacementNamed(HomeScreen.routeName),
+                        .pushReplacementNamed(MainScreen.routeName),
                     child: const Text(
                       'تخطي',
                       style: TextStyle(color: Colors.black),

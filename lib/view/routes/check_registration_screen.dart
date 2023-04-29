@@ -5,9 +5,9 @@ import '../widgets/lable_setting.dart';
 import '../widgets/text_widget.dart';
 import 'singup_screen.dart';
 
-class CheckRegistration extends StatelessWidget {
+class CheckRegistrationScreen extends StatelessWidget {
   static const routeName = '/checkregistration';
-  const CheckRegistration({super.key});
+  const CheckRegistrationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

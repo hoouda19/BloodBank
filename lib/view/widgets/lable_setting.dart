@@ -4,6 +4,7 @@ Widget lableSetting(
     {required String lable,
     required String initText,
     required String? Function(String?)? validator,
+    bool readOnly = false,
     bool obsecure = false}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.end,
@@ -13,6 +14,7 @@ Widget lableSetting(
         child: TextFormField(
           initialValue: initText,
           textAlign: TextAlign.right,
+          readOnly: readOnly,
           validator: validator,
           obscureText: obsecure,
           decoration: InputDecoration(

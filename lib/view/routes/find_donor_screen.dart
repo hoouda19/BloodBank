@@ -1,35 +1,42 @@
+import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:drop_down_list/drop_down_list.dart';
 
 import '../widgets/appbar_widget.dart';
 import '../widgets/blood_button.dart';
 import '../widgets/lable_setting.dart';
 import '../widgets/button_widget.dart';
-import '../widgets/text_widget.dart';
 import 'transfusional_screen.dart';
 import 'search_volunteer_screen.dart';
 
 class FindDonorScreen extends StatefulWidget {
   static const routeName = 'finddonorscreen';
-  const FindDonorScreen({super.key});
+  FindDonorScreen({super.key});
 
   @override
   State<FindDonorScreen> createState() => _FindDonorScreenState();
+
+  List<Map<String, bool>> bloodType = [
+    {'A+': false},
+    {'B+': false},
+    {'O+': false},
+    {'AB+': true},
+    {'A-': false},
+    {'B-': true},
+    {'O-': false},
+    {'AB-': false},
+  ];
+
+  List<SelectedListItem> cities = [
+    SelectedListItem(name: 'المنصورة'),
+    SelectedListItem(name: 'القاهرة'),
+    SelectedListItem(name: 'الاسكندرية'),
+  ];
 }
 
 class _FindDonorScreenState extends State<FindDonorScreen> {
   @override
   Widget build(BuildContext context) {
-    List<Map<String, bool>> bloodType = [
-      {'A+': false},
-      {'B+': false},
-      {'O+': false},
-      {'AB+': true},
-      {'A-': false},
-      {'B-': true},
-      {'O-': false},
-      {'AB-': false},
-    ];
-
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -56,7 +63,7 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                     height: MediaQuery.of(context).size.height * 0.02,
                   ),
                   Wrap(
-                    children: bloodType
+                    children: widget.bloodType
                         .map(
                           (value) => SizedBox(
                             height: MediaQuery.of(context).size.height * 0.10,
@@ -65,11 +72,6 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                               text: value.keys.single.toString(),
                               onPressed: () {
                                 setState(() {
-                                  value[value.keys.single.toString()] =
-                                      !value.values.single;
-                                  // print(value[value.keys.single.toString()]);
-                                  print(bloodType[0]
-                                      [value.keys.single.toString()]);
                                   value[value.keys.single.toString()] =
                                       !value.values.single;
                                 });
@@ -92,12 +94,42 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                     children: [
                       Column(
                         children: [
+                          //                       DropDownState(
+                          //   DropDown(
+                          //     bottomSheetTitle: const Text(
+                          //       'المدينة',
+                          //       style: TextStyle(
+                          //         fontWeight: FontWeight.bold,
+                          //         fontSize: 20.0,
+                          //       ),
+                          //     ),
+                          //     submitButtonChild: const Text(
+                          //       'Done',
+                          //       style: TextStyle(
+                          //         fontSize: 16,
+                          //         fontWeight: FontWeight.bold,
+                          //       ),
+                          //     ),
+                          //     data: widget.cities ?? [],
+                          //     selectedItems: (List<dynamic> selectedList) {
+                          //       List<String> list = [];
+                          //       for(var item in selectedList) {
+                          //         if(item is SelectedListItem) {
+                          //           list.add(item.name);
+                          //         }
+                          //       }
+                          //       // showSnackBar(list.toString());
+                          //     },
+                          //     enableMultipleSelection: true,
+                          //   ),
+                          // ).showModal(context);
+
                           const Text(
                             'المدينة',
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold),
                           ),
-                          Container(
+                          SizedBox(
                             width: 100,
                             child: lableSetting(
                                 lable: 'المدينة',
