@@ -132,8 +132,8 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                           SizedBox(
                             width: 100,
                             child: lableSetting(
+                                controller: null,
                                 lable: 'المدينة',
-                                initText: 'المنصوره',
                                 validator: (val) {}),
                           )
                         ],
@@ -148,8 +148,8 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                           Container(
                               width: 100,
                               child: lableSetting(
+                                  controller: null,
                                   lable: 'المحافظه',
-                                  initText: 'الدقهلية',
                                   validator: (val) {})),
                         ],
                       ),
@@ -162,11 +162,11 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                         style: TextStyle(
                             fontSize: 30, fontWeight: FontWeight.bold),
                       ),
-                      Container(
+                      SizedBox(
                           width: 100,
                           child: lableSetting(
+                              controller: null,
                               lable: 'المحافظه',
-                              initText: 'الدقهلية',
                               validator: (val) {})),
                     ],
                   ),

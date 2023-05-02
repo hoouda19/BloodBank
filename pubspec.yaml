@@ -43,6 +43,9 @@ dependencies:
   share_plus: ^6.3.2
   url_launcher: ^6.1.10
   drop_down_list: ^0.0.5
+  firebase_auth: ^4.4.2
+  firebase_core: ^2.10.0
+  cloud_firestore: ^4.5.3
 
 dev_dependencies:
   flutter_test:

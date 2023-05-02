@@ -44,8 +44,9 @@ class _onBoardContainerState extends State<onBoardContainer> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                    onPressed: () => Navigator.of(context)
-                        .pushReplacementNamed(MainScreen.routeName),
+                    onPressed: () => Navigator.of(context).pushReplacementNamed(
+                        MainScreen.routeName,
+                        arguments: 'بدون تسجيل'),
                     child: const Text(
                       'تخطي',
                       style: TextStyle(color: Colors.black),
@@ -76,7 +77,7 @@ class _onBoardContainerState extends State<onBoardContainer> {
                 children: [
                   Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: mediaSize.height * 1 / 5,
                         child: Column(
                           children: [
@@ -115,7 +116,7 @@ class _onBoardContainerState extends State<onBoardContainer> {
                     ],
                   ),
                   Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: const EdgeInsets.only(top: 10),
                       child: widget.sec
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,

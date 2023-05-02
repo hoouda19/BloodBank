@@ -1,7 +1,7 @@
-import 'package:bloodbank/view/routes/home_screen.dart';
-import 'package:bloodbank/view/routes/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:bloodbank/view/routes/main_screen.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/lable_setting.dart';
 import 'singup_screen.dart';
@@ -9,7 +9,9 @@ import 'singup_screen.dart';
 class LogInScreen extends StatelessWidget {
   static const routeName = '/loginscreen';
 
-  const LogInScreen({super.key});
+  LogInScreen({super.key});
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -41,11 +43,11 @@ class LogInScreen extends StatelessWidget {
                         )),
                     lableSetting(
                         lable: 'عنوان البريد الالكترونى ',
-                        initText: 'violamm12gmail.com',
+                        controller: emailController,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'كلمة المرور',
-                        initText: '0514651654',
+                        controller: passwordController,
                         validator: (val) {},
                         obsecure: true),
                     TextButton(
@@ -60,7 +62,23 @@ class LogInScreen extends StatelessWidget {
                     ButtonWidget(
                       text: 'تسجيل الدخول',
                       fun: () {
-                        Navigator.of(context).pushNamed(MainScreen.routeName);
+                        FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text)
+                            .then((value) {
+                          Navigator.of(context).pushNamed(MainScreen.routeName,
+                              arguments: FirebaseAuth
+                                  .instance.currentUser!.email
+                                  .toString());
+                        }).catchError((e) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text('invalid password or email try again :) '),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
                       },
                     ),
                   ],

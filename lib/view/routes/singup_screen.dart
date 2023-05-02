@@ -1,13 +1,17 @@
-import 'package:bloodbank/view/routes/check_registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'package:bloodbank/view/routes/check_registration_screen.dart';
 import 'package:bloodbank/view/widgets/lable_setting.dart';
 import '../widgets/button_widget.dart';
 import 'login_screen.dart';
+import 'main_screen.dart';
 
 class SingUpScreen extends StatelessWidget {
-  const SingUpScreen({Key? key}) : super(key: key);
+  SingUpScreen({Key? key}) : super(key: key);
   static const routeName = '/singupscreen';
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,33 +44,37 @@ class SingUpScreen extends StatelessWidget {
                         )),
                     lableSetting(
                         lable: 'الاسم الكامل',
-                        initText: 'نيفين ياسر محمد',
+                        controller: null,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'عنوان البريد الالكترونى ',
-                        initText: 'viola****@gmail.com',
+                        controller: emailController,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'كلمة المرور',
-                        initText: '0514651654',
+                        controller: passwordController,
                         validator: (val) {},
                         obsecure: true),
                     lableSetting(
                         lable: 'رقم الموبايل ',
-                        initText: '01234567890',
+                        controller: null,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'فصيله الدم ',
-                        initText: 'A+',
+                        controller: null,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'المدينه',
-                        initText: 'طلخا',
+                        controller: null,
                         validator: (val) {}),
                     TextButton(
                         child: const Text('لدي حساب'),
                         onPressed: () => Navigator.of(context)
                             .pushNamed(LogInScreen.routeName)),
+                    TextButton(
+                        child: const Text('محمود'),
+                        onPressed: () => Navigator.of(context)
+                            .pushNamed(MainScreen.routeName, arguments: '')),
                   ],
                 ),
                 Row(
@@ -75,8 +83,26 @@ class SingUpScreen extends StatelessWidget {
                     ButtonWidget(
                       text: 'تسجيل الدخول',
                       fun: () {
-                        Navigator.of(context)
-                            .pushNamed(CheckRegistrationScreen.routeName);
+                        FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: emailController.text,
+                                password: passwordController.text)
+                            .then((value) {
+                          print(value.user?.email);
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Done ,Try To Sign In'),
+                          ));
+                          Navigator.of(context)
+                              .pushNamed(LogInScreen.routeName);
+                        }).catchError((e) {
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content:
+                                Text('invalid password or email try again :) '),
+                            backgroundColor: Colors.red,
+                          ));
+                        });
                       },
                     ),
                   ],

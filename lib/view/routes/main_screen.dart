@@ -21,6 +21,8 @@ int index = 2;
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
+    final userEmail = ModalRoute.of(context)!.settings.arguments as String;
+
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
@@ -47,13 +49,13 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
         ),
-        endDrawer: const DrawerWidget(),
+        endDrawer: DrawerWidget(userEmail: userEmail),
         backgroundColor: Colors.white,
         body: index == 1
             ? const NearbyHospitalsScreen()
             : index == 2
                 ? const HomeScreen()
-                : ProfileScreen(),
+                : ProfileScreen(userEmail: userEmail),
       ),
     );
   }

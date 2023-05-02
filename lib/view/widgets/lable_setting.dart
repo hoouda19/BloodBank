@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 
-Widget lableSetting(
-    {required String lable,
-    required String initText,
-    required String? Function(String?)? validator,
-    bool readOnly = false,
-    bool obsecure = false}) {
+Widget lableSetting({
+  required String lable,
+  required String? Function(String?)? validator,
+  bool readOnly = false,
+  bool obsecure = false,
+  required TextEditingController? controller,
+}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.end,
     children: [
       Directionality(
         textDirection: TextDirection.rtl,
         child: TextFormField(
-          initialValue: initText,
+          controller: controller,
+          // initialValue: initText,
+
           textAlign: TextAlign.right,
           readOnly: readOnly,
           validator: validator,
@@ -24,7 +27,7 @@ Widget lableSetting(
           )),
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 15,
       )
     ],

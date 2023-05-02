@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import 'view/routes/chat_screen.dart';
 import 'view/routes/login_screen.dart';
@@ -17,7 +18,9 @@ import 'view/routes/search_volunteer_screen.dart';
 import 'view/routes/singup_screen.dart';
 import 'view/routes/home_screen.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -56,14 +59,14 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeName: (context) => const HomeScreen(),
         NearbyHospitalsScreen.routeName: (context) =>
             const NearbyHospitalsScreen(),
-        SingUpScreen.routeName: (context) => const SingUpScreen(),
+        SingUpScreen.routeName: (context) => SingUpScreen(),
         FindDonorScreen.routeName: (context) => FindDonorScreen(),
         TransfusionalScreen.routeName: (context) => const TransfusionalScreen(),
         ChatScreen.routeName: (context) => const ChatScreen(),
         SearchVolunteerScreen.routeName: (context) =>
             const SearchVolunteerScreen(),
         RequestScreen.routeName: (context) => const RequestScreen(),
-        LogInScreen.routeName: (context) => const LogInScreen(),
+        LogInScreen.routeName: (context) => LogInScreen(),
         CheckRegistrationScreen.routeName: (context) =>
             const CheckRegistrationScreen(),
         NewDonorScreen.routeName: (context) => const NewDonorScreen(),

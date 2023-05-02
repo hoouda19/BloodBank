@@ -8,7 +8,8 @@ import 'appbar_homepage_widget.dart';
 import 'drawer_button.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  final String userEmail;
+  const DrawerWidget({super.key, this.userEmail = 'مستخدم كا ضيف'});
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +44,8 @@ class DrawerWidget extends StatelessWidget {
                   SizedBox(
                     height: MediaQuery.of(context).size.width * 0.02,
                   ),
-                  const Text(
-                    'نيفين ياسر محمد',
+                  Text(
+                    userEmail,
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   )
                 ],

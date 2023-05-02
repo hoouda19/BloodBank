@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:matcher/matcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:bloodbank/view/widgets/text_widget.dart';
 import '../widgets/appbar_homepage_widget.dart';
 import '../widgets/blood_widget.dart';
-import '../widgets/lable_setting.dart';
+import '../widgets/text_field_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
-  ProfileScreen({super.key});
+  final String userEmail;
+  ProfileScreen({super.key, this.userEmail = 'مستخدم كا ضيف'});
 
   bool readOnly = true;
   String readOnlyText = 'تعديل';
@@ -19,6 +19,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
+    // final name =
     return SizedBox(
       width: double.infinity,
       child:
@@ -56,10 +57,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: MediaQuery.of(context).size.width * 0.02,
                     ),
-                    const Text(
-                      'نيفين ياسر محمد',
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    TextWidget(
+                      text: widget.userEmail,
+                      size: 15,
+                      weight: FontWeight.bold,
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                   ],
@@ -84,38 +85,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         child: Text(widget.readOnly ? 'تعديل' : 'تم')),
                   ],
                 ),
-                lableSetting(
-                    lable: 'الاسم بالكامل',
-                    initText: 'نيفين ياسر محمد',
+                TextFieldWidget(
+                    lable: 'الاسم',
                     readOnly: widget.readOnly,
-                    validator: (val) {}),
-                lableSetting(
-                    lable: 'رقم الهاتف',
-                    initText: '01026298640',
-                    readOnly: widget.readOnly,
-                    validator: (val) {}),
-                lableSetting(
+                    initText: 'ahmed mohammed'),
+                TextFieldWidget(
                     lable: 'البريد الالكتروني',
-                    initText: 'm@yahoo.com',
                     readOnly: widget.readOnly,
-                    validator: (val) {}),
-                lableSetting(
-                    lable: 'المحافظه',
-                    initText: 'الدقهلية',
+                    initText: 'ahmed mohammed'),
+                TextFieldWidget(
+                    lable: 'رقم الهاتف',
                     readOnly: widget.readOnly,
-                    validator: (val) {},
-                    obsecure: false),
-                lableSetting(
+                    initText: 'ahmed mohammed'),
+                TextFieldWidget(
                     lable: 'المدينة/المنطقة',
-                    initText: 'طلخا',
                     readOnly: widget.readOnly,
-                    validator: (val) {}),
-                lableSetting(
-                  lable: 'فصيله الدم ',
-                  initText: 'A+',
-                  readOnly: widget.readOnly,
-                  validator: (val) {},
-                ),
+                    initText: 'ahmed mohammed'),
+                TextFieldWidget(
+                    lable: 'فصيله الدم',
+                    readOnly: widget.readOnly,
+                    initText: 'ahmed mohammed'),
               ],
             ),
           ),

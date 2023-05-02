@@ -45,7 +45,7 @@ class CheckRegistrationScreen extends StatelessWidget {
                         )),
                     lableSetting(
                         lable: 'عنوان البريد الالكترونى ',
-                        initText: '',
+                        controller: null,
                         validator: (val) {}),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

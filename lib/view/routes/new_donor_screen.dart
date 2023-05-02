@@ -26,24 +26,24 @@ class NewDonorScreen extends StatelessWidget {
                   children: [
                     lableSetting(
                         lable: 'الاسم بالكامل',
-                        initText: 'نيفين ياسر محمد',
+                        controller: null,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'رقم الهاتف',
-                        initText: '01026298640',
+                        controller: null,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'المحافظه',
-                        initText: 'الدقهلية',
+                        controller: null,
                         validator: (val) {},
                         obsecure: false),
                     lableSetting(
                         lable: 'المدينة/المنطقة',
-                        initText: 'طلخا',
+                        controller: null,
                         validator: (val) {}),
                     lableSetting(
                         lable: 'فصيله الدم ',
-                        initText: 'A+',
+                        controller: null,
                         validator: (val) {}),
                   ],
                 ),
