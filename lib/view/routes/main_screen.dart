@@ -49,13 +49,13 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
         ),
-        endDrawer: DrawerWidget(userEmail: userEmail),
+        endDrawer: DrawerWidget(userEmail: userEmail.toString()),
         backgroundColor: Colors.white,
         body: index == 1
             ? const NearbyHospitalsScreen()
             : index == 2
                 ? const HomeScreen()
-                : ProfileScreen(userEmail: userEmail),
+                : ProfileScreen(userEmail: userEmail.toString()),
       ),
     );
   }

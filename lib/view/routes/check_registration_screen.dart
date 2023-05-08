@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../widgets/button_widget.dart';
-import '../widgets/lable_setting.dart';
+import '../widgets/label_setting.dart';
 import '../widgets/text_widget.dart';
 import 'singup_screen.dart';
 

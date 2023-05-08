@@ -44,11 +44,13 @@ class _onBoardContainerState extends State<onBoardContainer> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                    onPressed: () => Navigator.of(context).pushReplacementNamed(
-                        MainScreen.routeName,
-                        arguments: 'بدون تسجيل'),
+                    onPressed: () {
+                      Navigator.of(context).pushReplacementNamed(
+                          MainScreen.routeName,
+                          arguments: 'بدون تسجيل');
+                    },
                     child: const Text(
-                      'تخطي',
+                      'تخطي التسجيل',
                       style: TextStyle(color: Colors.black),
                     ))
               ],

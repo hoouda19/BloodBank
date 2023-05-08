@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userEmail = ModalRoute.of(context)!.settings.arguments as String;
     return SizedBox(
       width: double.infinity,
       child:
@@ -38,8 +39,9 @@ class HomeScreen extends StatelessWidget {
                     image: 'asset/images/home1.png',
                     text: 'اتبرع بالدم',
                     context: context,
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(NewDonorScreen.routeName),
+                    onTap: () => Navigator.of(context).pushNamed(
+                        NewDonorScreen.routeName,
+                        arguments: userEmail),
                   ),
                   //ContainerMariem
                   homeContainerTap(

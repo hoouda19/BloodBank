@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../widgets/appbar_widget.dart';
 
+//delete
 class NearbyHospitalsDetailsScreen extends StatelessWidget {
   static const routeName = '/bloodbankdetailsscreen';
   const NearbyHospitalsDetailsScreen({super.key});

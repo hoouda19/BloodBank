@@ -15,7 +15,6 @@ Widget lableSetting({
         child: TextFormField(
           controller: controller,
           // initialValue: initText,
-
           textAlign: TextAlign.right,
           readOnly: readOnly,
           validator: validator,

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:bloodbank/view/routes/main_screen.dart';
 import '../widgets/button_widget.dart';
-import '../widgets/lable_setting.dart';
+import '../widgets/label_setting.dart';
 import 'singup_screen.dart';
 
 class LogInScreen extends StatelessWidget {
@@ -54,6 +54,10 @@ class LogInScreen extends StatelessWidget {
                         child: const Text('لا امتلك حساب . تسجيل حساب جديد'),
                         onPressed: () => Navigator.of(context)
                             .pushNamed(SingUpScreen.routeName)),
+                    TextButton(
+                        child: const Text('تخطي التسجيل'),
+                        onPressed: () => Navigator.of(context)
+                            .pushNamed(MainScreen.routeName)),
                   ],
                 ),
                 Row(

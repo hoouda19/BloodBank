@@ -1,10 +1,10 @@
-import 'package:drop_down_list/model/selected_list_item.dart';
+// import 'package:drop_down_list/model/selected_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:drop_down_list/drop_down_list.dart';
+// import 'package:drop_down_list/drop_down_list.dart';
 
 import '../widgets/appbar_widget.dart';
 import '../widgets/blood_button.dart';
-import '../widgets/lable_setting.dart';
+import '../widgets/label_setting.dart';
 import '../widgets/button_widget.dart';
 import 'transfusional_screen.dart';
 import 'search_volunteer_screen.dart';
@@ -20,17 +20,11 @@ class FindDonorScreen extends StatefulWidget {
     {'A+': false},
     {'B+': false},
     {'O+': false},
-    {'AB+': true},
+    {'AB+': false},
     {'A-': false},
-    {'B-': true},
+    {'B-': false},
     {'O-': false},
     {'AB-': false},
-  ];
-
-  List<SelectedListItem> cities = [
-    SelectedListItem(name: 'المنصورة'),
-    SelectedListItem(name: 'القاهرة'),
-    SelectedListItem(name: 'الاسكندرية'),
   ];
 }
 
@@ -82,7 +76,6 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                         )
                         .toList(),
                   ),
-
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.03,
                   ),
@@ -94,36 +87,6 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                     children: [
                       Column(
                         children: [
-                          //                       DropDownState(
-                          //   DropDown(
-                          //     bottomSheetTitle: const Text(
-                          //       'المدينة',
-                          //       style: TextStyle(
-                          //         fontWeight: FontWeight.bold,
-                          //         fontSize: 20.0,
-                          //       ),
-                          //     ),
-                          //     submitButtonChild: const Text(
-                          //       'Done',
-                          //       style: TextStyle(
-                          //         fontSize: 16,
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //     ),
-                          //     data: widget.cities ?? [],
-                          //     selectedItems: (List<dynamic> selectedList) {
-                          //       List<String> list = [];
-                          //       for(var item in selectedList) {
-                          //         if(item is SelectedListItem) {
-                          //           list.add(item.name);
-                          //         }
-                          //       }
-                          //       // showSnackBar(list.toString());
-                          //     },
-                          //     enableMultipleSelection: true,
-                          //   ),
-                          // ).showModal(context);
-
                           const Text(
                             'المدينة',
                             style: TextStyle(
@@ -138,54 +101,28 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                           )
                         ],
                       ),
-                      Column(
-                        children: [
-                          const Text(
-                            'المحافظة',
-                            style: TextStyle(
-                                fontSize: 30, fontWeight: FontWeight.bold),
-                          ),
-                          Container(
-                              width: 100,
-                              child: lableSetting(
-                                  controller: null,
-                                  lable: 'المحافظه',
-                                  validator: (val) {})),
-                        ],
-                      ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      const Text(
-                        'المحافظة',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                          width: 100,
-                          child: lableSetting(
-                              controller: null,
-                              lable: 'المحافظه',
-                              validator: (val) {})),
-                    ],
-                  ),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.height * 0.03,
-                  // ),
                   TextButton(
                       child: const Text('هل تريد معرفة توافق نقل الدم ؟'),
-                      onPressed: () => Navigator.of(context)
-                          .pushNamed(TransfusionalScreen.routeName)),
-                  // SizedBox(
-                  //   height: MediaQuery.of(context).size.height * 0.03,
-                  // ),
-                  Container(
+                      onPressed: () {
+                        Navigator.of(context).pushNamed(
+                          TransfusionalScreen.routeName,
+                        );
+                      }),
+                  SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     child: ButtonWidget(
                         text: 'بحث',
-                        fun: () => Navigator.of(context)
-                            .pushNamed(SearchVolunteerScreen.routeName)),
+                        fun: () {
+                          for (var element in widget.bloodType) {
+                            if (element.values.single == true) {
+                              Navigator.of(context).pushNamed(
+                                  SearchVolunteerScreen.routeName,
+                                  arguments: element.keys.single);
+                            }
+                          }
+                        }),
                   ),
                 ],
               ),
@@ -196,3 +133,21 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
     );
   }
 }
+  // List list = [];
+  //                         for (var element in widget.bloodType) {
+  //                           if (element.values.single == true) {
+  //                             list.add(element.keys);
+  //                           } else {
+  //                             ScaffoldMessenger.of(context)
+  //                                 .showSnackBar(const SnackBar(
+  //                               content: Text(
+  //                                 'اختر الفصيلة اولا ',
+  //                                 textAlign: TextAlign.center,
+  //                               ),
+  //                             ));
+  //                             break;
+  //                           }
+  //                         }
+  //                         Navigator.of(context).pushNamed(
+  //                             SearchVolunteerScreen.routeName,
+  //                             arguments: list);
