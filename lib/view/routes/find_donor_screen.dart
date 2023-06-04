@@ -29,6 +29,18 @@ class FindDonorScreen extends StatefulWidget {
 }
 
 class _FindDonorScreenState extends State<FindDonorScreen> {
+  var items = [
+    'المنصورة',
+    'القاهره',
+    'كفر الشيخ',
+    'طنطا',
+    'المحلة الكبرى',
+    'الزقازيق',
+    'دمياط',
+    'دمنهور',
+    'بنها',
+  ];
+  String dropdownvalue = 'المنصورة';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -66,6 +78,10 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                               text: value.keys.single.toString(),
                               onPressed: () {
                                 setState(() {
+                                  for (var value in widget.bloodType) {
+                                    value.updateAll(
+                                        (name, value) => value = false);
+                                  }
                                   value[value.keys.single.toString()] =
                                       !value.values.single;
                                 });
@@ -92,13 +108,20 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                             style: TextStyle(
                                 fontSize: 30, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(
-                            width: 100,
-                            child: lableSetting(
-                                controller: null,
-                                lable: 'المدينة',
-                                validator: (val) {}),
-                          )
+                          DropdownButton(
+                            value: dropdownvalue,
+                            items: items.map((String items) {
+                              return DropdownMenuItem(
+                                value: items,
+                                child: Text(items),
+                              );
+                            }).toList(),
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownvalue = newValue!;
+                              });
+                            },
+                          ),
                         ],
                       ),
                     ],
@@ -120,8 +143,13 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
                               Navigator.of(context).pushNamed(
                                   SearchVolunteerScreen.routeName,
                                   arguments: element.keys.single);
+                              return;
                             }
                           }
+                          ScaffoldMessenger.of(context)
+                              .showSnackBar(const SnackBar(
+                            content: Text('Choose the blood type first'),
+                          ));
                         }),
                   ),
                 ],

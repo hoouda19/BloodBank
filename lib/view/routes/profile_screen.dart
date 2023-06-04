@@ -22,14 +22,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    Future getDocs() async {
-      QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection("collection").get();
-      for (int i = 0; i < querySnapshot.docs.length; i++) {
-        var a = querySnapshot.docs[i];
-        print(a.data());
-      }
-    }
+    // Future getDocs() async {
+    //   QuerySnapshot querySnapshot =
+    //       await FirebaseFirestore.instance.collection("collection").get();
+    //   for (int i = 0; i < querySnapshot.docs.length; i++) {
+    //     var a = querySnapshot.docs[i];
+    //     print(a.data());
+    //   }
+    // }
 
     users;
     return SizedBox(
@@ -117,9 +117,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             height: MediaQuery.of(context).size.height * 0.05),
                         Row(
                           children: [
-                            TextButton(
-                                onPressed: getDocs,
-                                child: const Text('buttin')),
                             TextButton(
                                 onPressed: () async {
                                   // print('object');

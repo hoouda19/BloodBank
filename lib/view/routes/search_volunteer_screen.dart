@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:bloodbank/view/routes/chat_screen.dart';
 import 'package:bloodbank/view/widgets/text_widget.dart';
 import '../widgets/appbar_widget.dart';
 
@@ -14,19 +13,19 @@ class SearchVolunteerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userEmail = ModalRoute.of(context)!.settings.arguments as String;
 
-    FirebaseFirestore.instance
-        .collection('users')
-        .where('donor', isEqualTo: 'true')
-        .get()
-        .then(
-      (value) {
-        for (int i = 0; i < value.docs.length; i++)
-          print(value.docs[i].data().values);
-      },
-    );
-    var users = FirebaseFirestore.instance
-        .collection('users')
-        .where('donor', isEqualTo: 'true');
+    // FirebaseFirestore.instance
+    //     .collection('users')
+    //     .where('donor', isEqualTo: 'true')
+    //     .get()
+    //     .then(
+    //   (value) {
+    //     for (int i = 0; i < value.docs.length; i++)
+    //       print(value.docs[i].data().values);
+    //   },
+    // );
+    // var users = FirebaseFirestore.instance
+    //     .collection('users')
+    //     .where('donor', isEqualTo: 'true');
 
     return Scaffold(
       body: Column(

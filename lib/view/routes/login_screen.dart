@@ -56,8 +56,9 @@ class LogInScreen extends StatelessWidget {
                             .pushNamed(SingUpScreen.routeName)),
                     TextButton(
                         child: const Text('تخطي التسجيل'),
-                        onPressed: () => Navigator.of(context)
-                            .pushNamed(MainScreen.routeName)),
+                        onPressed: () => Navigator.of(context).pushNamed(
+                            MainScreen.routeName,
+                            arguments: 'بدون تسجيل')),
                   ],
                 ),
                 Row(

@@ -1,3 +1,4 @@
+import 'package:bloodbank/view/routes/Splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -54,7 +55,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => onboardScreen(),
+        '/': (context) => const SplashScreen(),
+        OnboardScreen.routeName: (context) => OnboardScreen(),
         MainScreen.routeName: (context) => const MainScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
         NearbyHospitalsScreen.routeName: (context) =>

@@ -128,14 +128,14 @@ class _onBoardContainerState extends State<onBoardContainer> {
                                     'رجوع',
                                     style: TextStyle(color: Colors.black),
                                   ),
-                                  onPressed: () => onboardScreen.contrpage
+                                  onPressed: () => OnboardScreen.contrpage
                                       .previousPage(
                                           duration:
                                               const Duration(milliseconds: 400),
                                           curve: Curves.easeIn),
                                 ),
                                 MaterialButton(
-                                  onPressed: () => onboardScreen.contrpage
+                                  onPressed: () => OnboardScreen.contrpage
                                       .nextPage(
                                           duration:
                                               const Duration(milliseconds: 400),
