@@ -7,6 +7,7 @@ import '../widgets/alert_dialog_widget.dart';
 import '../widgets/appbar_widget.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/text_field_widget.dart';
+import 'login_screen.dart';
 
 class NewDonorScreen extends StatefulWidget {
   static const routeName = '/newdonorscreen';
@@ -29,11 +30,33 @@ class _NewDonorScreenState extends State<NewDonorScreen> {
           builder:
               (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
             if (snapshot.hasError) {
-              return const Text("Something went wrong");
+              return const AppbarWidget(text: 'متبرع جديد');
             }
 
             if (snapshot.hasData && !snapshot.data!.exists) {
-              return const Text("Document does not exist");
+              return Center(
+                  child: SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const AppbarWidget(text: 'متبرع جديد'),
+                    Column(
+                      children: [
+                        const TextWidget(
+                          text: "لم تسجيل بعد ",
+                          size: 20,
+                        ),
+                        TextButton(
+                            child: const Text('تسجيل الدخول'),
+                            onPressed: () => Navigator.of(context)
+                                .pushNamed(LogInScreen.routeName)),
+                      ],
+                    ),
+                    const SizedBox()
+                  ],
+                ),
+              ));
             }
 
             if (snapshot.connectionState == ConnectionState.done) {
