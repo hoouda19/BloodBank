@@ -1,4 +1,3 @@
-import 'package:bloodbank/view/routes/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -6,25 +5,26 @@ import 'package:flutter/material.dart';
 import '../widgets/appbar_widget.dart';
 import '../widgets/text_widget.dart';
 
-class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
-  static const routeName = '/chatscreen';
+class ReceiveChatScreen extends StatefulWidget {
+  const ReceiveChatScreen({super.key});
+  static const routeName = '/receivechatscreen';
 
   @override
-  State<ChatScreen> createState() => _ChatScreenState();
+  State<ReceiveChatScreen> createState() => _ReceiveChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ReceiveChatScreenState extends State<ReceiveChatScreen> {
   List myChat = [];
   var myChatController = TextEditingController();
+  String currentUser = FirebaseAuth.instance.currentUser!.email.toString();
+
   void chatFunction(String userEmail) {
     setState(() {
       myChat.add(myChatController.text);
-      String currentUser = FirebaseAuth.instance.currentUser!.email.toString();
 
-      FirebaseFirestore.instance.collection('chats').doc(userEmail).set({
-        'myemail': currentUser,
-        'donoremail': userEmail,
+      FirebaseFirestore.instance.collection('chats').doc(currentUser).set({
+        'myemail': userEmail,
+        'donoremail': currentUser,
         'chat': myChat,
       });
     });
@@ -40,7 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
         alignment: Alignment.center,
         children: [
           FutureBuilder<DocumentSnapshot>(
-              future: chats.doc(userEmail).get(),
+              future: chats.doc(currentUser).get(),
               builder: (BuildContext context,
                   AsyncSnapshot<DocumentSnapshot> snapshot) {
                 if (snapshot.hasError) {
@@ -51,8 +51,8 @@ class _ChatScreenState extends State<ChatScreen> {
                   return Center(
                       child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TextWidget(
+                    children: const [
+                      TextWidget(
                         text: "لا توجد رسائل",
                         size: 20,
                       ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import '../widgets/appbar_widget.dart';
 import '../widgets/blood_button.dart';
-import '../widgets/label_setting.dart';
 import '../widgets/button_widget.dart';
 import 'transfusional_screen.dart';
 import 'search_volunteer_screen.dart';

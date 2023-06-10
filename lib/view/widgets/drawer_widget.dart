@@ -65,8 +65,9 @@ class DrawerWidget extends StatelessWidget {
                   DrawerButton(
                     text: 'الرسائل',
                     icon: Icons.messenger_outline_rounded,
-                    ontap: () => Navigator.of(context)
-                        .pushNamed(MessengeScreen.routeName),
+                    ontap: () => Navigator.of(context).pushNamed(
+                        MessengeScreen.routeName,
+                        arguments: userEmail),
                   ),
                   DrawerButton(
                       text: 'الطلبات',

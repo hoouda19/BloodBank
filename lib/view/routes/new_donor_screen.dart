@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:bloodbank/view/routes/check_registration_screen.dart';
 import 'package:bloodbank/view/widgets/text_widget.dart';
 import '../widgets/alert_dialog_widget.dart';
 import '../widgets/appbar_widget.dart';

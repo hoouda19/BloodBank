@@ -11,6 +11,7 @@ import 'view/routes/messenge_screen.dart';
 import 'view/routes/nearby_hospitals_details_screen.dart';
 import 'view/routes/nearby_hospitals_screen.dart';
 import 'view/routes/new_donor_screen.dart';
+import 'view/routes/receive_chat_screen.dart';
 import 'view/routes/transfusional_screen.dart';
 import 'view/routes/find_donor_screen.dart';
 import 'view/routes/request_screen.dart';
@@ -76,6 +77,7 @@ class MyApp extends StatelessWidget {
         InstructionsScreen.routeName: (context) => const InstructionsScreen(),
         NearbyHospitalsDetailsScreen.routeName: (context) =>
             const NearbyHospitalsDetailsScreen(),
+        ReceiveChatScreen.routeName: (context) => ReceiveChatScreen(),
       },
     );
   }

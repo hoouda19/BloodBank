@@ -1,3 +1,5 @@
+import 'package:bloodbank/view/routes/chat_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -50,7 +52,7 @@ class SearchVolunteerScreen extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(
                               horizontal: 20, vertical: 10),
                           padding: const EdgeInsets.all(20),
-                          height: 120,
+                          height: 170,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(25),
                               boxShadow: const [
@@ -130,11 +132,16 @@ class SearchVolunteerScreen extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 10),
                                   InkWell(
-                                    onTap: () async {
-                                      await launchUrl(
-                                          Uri.parse(
-                                              'https://wa.me/20${e['number'].toString()}'),
-                                          mode: LaunchMode.externalApplication);
+                                    onTap: () {
+                                      // FirebaseFirestore.instance
+                                      //     .collection('chats')
+                                      //     .doc(e['email'])
+                                      //     .set({
+                                      //   'chat': ['', '']
+                                      // });
+                                      Navigator.of(context).pushNamed(
+                                          ChatScreen.routeName,
+                                          arguments: e['email'].toString());
                                     },
                                     child: Container(
                                       height: 35,
@@ -154,6 +161,32 @@ class SearchVolunteerScreen extends StatelessWidget {
                                         Icons.message_outlined,
                                         color: Color.fromARGB(255, 231, 80, 90),
                                       )),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  InkWell(
+                                    onTap: () async {
+                                      await launchUrl(
+                                          Uri.parse(
+                                              'https://wa.me/20${e['number'].toString()}'),
+                                          mode: LaunchMode.externalApplication);
+                                    },
+                                    child: Container(
+                                      height: 35,
+                                      width: 50,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                                color: Colors.black12,
+                                                blurStyle: BlurStyle.outer,
+                                                spreadRadius: 1,
+                                                blurRadius: 5),
+                                          ]),
+                                      child: Center(
+                                          child: Image.asset(
+                                              'asset/images/whatsapp.png')),
                                     ),
                                   ),
                                 ],
