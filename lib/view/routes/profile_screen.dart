@@ -115,27 +115,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         SizedBox(
                             height: MediaQuery.of(context).size.height * 0.05),
-                        Row(
-                          children: [
-                            TextButton(
-                                onPressed: () async {
-                                  // print('object');
-                                  // QuerySnapshot querySnapshot =
-                                  //     await FirebaseFirestore.instance
-                                  //         .collection("users")
-                                  //         .get();
-                                  // var list =
-                                  //     querySnapshot.docs[0].data();
+                        // Row(
+                        //   children: [
+                        //     TextButton(
+                        //         onPressed: () async {
+                        //           // print('object');
+                        //           // QuerySnapshot querySnapshot =
+                        //           //     await FirebaseFirestore.instance
+                        //           //         .collection("users")
+                        //           //         .get();
+                        //           // var list =
+                        //           //     querySnapshot.docs[0].data();
 
-                                  // print(list);
+                        //           // print(list);
 
-                                  setState(() {
-                                    widget.readOnly = !widget.readOnly;
-                                  });
-                                },
-                                child: Text(widget.readOnly ? 'تعديل' : 'تم')),
-                          ],
-                        ),
+                        //           setState(() {
+                        //             widget.readOnly = !widget.readOnly;
+                        //           });
+                        //         },
+                        //         child: Text(widget.readOnly ? 'تعديل' : 'تم')),
+                        //   ],
+                        // ),
                         TextFieldWidget(
                             lable: 'الاسم',
                             readOnly: widget.readOnly,
@@ -160,7 +160,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   }
 
-                  return const CircularProgressIndicator();
+                  return const Center(child: CircularProgressIndicator());
                 },
               )),
         ),

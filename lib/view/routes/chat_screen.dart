@@ -102,7 +102,10 @@ class _ChatScreenState extends State<ChatScreen> {
               Directionality(
                 textDirection: TextDirection.rtl,
                 child: TextField(
-                  onSubmitted: (_) => chatFunction(userEmail),
+                  onSubmitted: (_) {
+                    chatFunction(userEmail);
+                    myChatController.clear();
+                  },
                   scribbleEnabled: true,
                   controller: myChatController,
                   cursorColor: const Color.fromARGB(255, 231, 80, 90),
@@ -120,7 +123,10 @@ class _ChatScreenState extends State<ChatScreen> {
                         Icons.send_rounded,
                         color: Color.fromARGB(255, 231, 80, 90),
                       ),
-                      onPressed: () => chatFunction(userEmail),
+                      onPressed: () {
+                        chatFunction(userEmail);
+                        myChatController.clear();
+                      },
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),

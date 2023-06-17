@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:bloodbank/view/routes/chat_screen.dart';
-import 'package:bloodbank/view/routes/search_volunteer_screen.dart';
 import 'package:bloodbank/view/widgets/text_widget.dart';
 
 import '../widgets/appbar_widget.dart';
@@ -50,33 +48,35 @@ class RequestScreen extends StatelessWidget {
                             width: 13,
                           ),
                           Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: const [
-                              SizedBox(
-                                height: 5,
-                              ),
                               TextWidget(
-                                  text: 'نيفين ياسر  A+',
+                                  text: 'user@gmail.com',
                                   size: 18,
                                   weight: FontWeight.bold),
-                              SizedBox(
-                                height: 13,
-                              ),
                               TextWidget(
-                                  text: 'المنصورة /  طلخا ',
+                                  text: 'A+',
+                                  size: 18,
+                                  weight: FontWeight.bold),
+                              TextWidget(
+                                  text: 'المنصورة',
                                   size: 16,
                                   color: Colors.grey),
                             ],
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => ChatScreen()));
+                                  Navigator.of(context).pop();
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text('تم'),
+                                  ));
                                 },
                                 child: Container(
                                   height: 35,
@@ -104,9 +104,12 @@ class RequestScreen extends StatelessWidget {
                               const SizedBox(height: 10),
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          const SearchVolunteerScreen()));
+                                  Navigator.of(context).pop();
+
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(const SnackBar(
+                                    content: Text('تم الحذف'),
+                                  ));
                                 },
                                 child: Container(
                                   height: 35,
@@ -134,7 +137,7 @@ class RequestScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                separatorBuilder: (_, index) => SizedBox(),
+                separatorBuilder: (_, index) => const SizedBox(),
                 itemCount: 1),
           ),
         ],

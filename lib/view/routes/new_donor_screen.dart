@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -113,6 +115,9 @@ class _NewDonorScreenState extends State<NewDonorScreen> {
                             'number': data['number'].toString(),
                             'city': data['city'].toString(),
                             'bloodtype': data['bloodtype'].toString(),
+                          });
+                          Timer(const Duration(seconds: 1), () {
+                            Navigator.of(context).pop();
                           });
                           showDialog(
                             context: context,

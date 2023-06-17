@@ -29,16 +29,16 @@ class MessengeScreen extends StatelessWidget {
               if (snapshot.hasData && !snapshot.data!.exists) {
                 return Center(
                     child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const TextWidget(
-                      text: "لم تسجيل بعد ",
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    AppbarWidget(text: 'الرسائل'),
+                    TextWidget(
+                      text: "لا توجد رسائل",
                       size: 20,
                     ),
-                    TextButton(
-                        child: const Text('تسجيل الدخول'),
-                        onPressed: () => Navigator.of(context)
-                            .pushNamed(LogInScreen.routeName)),
+                    SizedBox(
+                      height: 10,
+                    )
                   ],
                 ));
               }
@@ -106,7 +106,7 @@ class MessengeScreen extends StatelessWidget {
                   ],
                 );
               }
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }),
       ),
     );
