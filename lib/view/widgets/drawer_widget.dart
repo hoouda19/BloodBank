@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../routes/login_screen.dart';
 import '../routes/messenge_screen.dart';
 import '../routes/request_screen.dart';
-import '../routes/search_volunteer_screen.dart';
 import 'appbar_homepage_widget.dart';
-import 'drawer_button.dart';
+import 'drawer_button.dart' as drawer;
 
 class DrawerWidget extends StatelessWidget {
   final String userEmail;
@@ -62,14 +61,14 @@ class DrawerWidget extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  DrawerButton(
+                  drawer.DrawerButton(
                     text: 'الرسائل',
                     icon: Icons.messenger_outline_rounded,
                     ontap: () => Navigator.of(context).pushNamed(
                         MessengeScreen.routeName,
                         arguments: userEmail),
                   ),
-                  DrawerButton(
+                  drawer.DrawerButton(
                       text: 'الطلبات',
                       icon: Icons.person_add_alt,
                       ontap: () => Navigator.of(context)
@@ -79,7 +78,7 @@ class DrawerWidget extends StatelessWidget {
                   //     icon: Icons.settings,
                   //     ontap: () => Navigator.of(context)
                   //         .pushNamed(SearchVolunteerScreen.routeName)),
-                  DrawerButton(
+                  drawer.DrawerButton(
                       text: 'تسجيل خروج',
                       icon: Icons.logout_rounded,
                       ontap: () => Navigator.of(context)
