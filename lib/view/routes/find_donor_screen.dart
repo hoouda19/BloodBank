@@ -54,9 +54,9 @@ class _FindDonorScreenState extends State<FindDonorScreen> {
               ),
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.end,
-                    children: const [
+                    children: [
                       Text(
                         'فصيله الدم',
                         style: TextStyle(

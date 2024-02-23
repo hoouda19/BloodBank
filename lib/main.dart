@@ -39,16 +39,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: const MaterialColor(
               0xffE7505A,
               <int, Color>{
-                50: Color.fromARGB(255, 231, 80, 90),
-                100: Color.fromARGB(255, 231, 80, 90),
-                200: Color.fromARGB(255, 231, 80, 90),
-                300: Color.fromARGB(255, 231, 80, 90),
-                400: Color.fromARGB(255, 231, 80, 90),
-                500: Color.fromARGB(255, 231, 80, 90),
-                600: Color.fromARGB(255, 231, 80, 90),
-                700: Color.fromARGB(255, 231, 80, 90),
-                800: Color.fromARGB(255, 231, 80, 90),
-                900: Color.fromARGB(255, 231, 80, 90),
+                200: Color.fromARGB(255, 255, 245, 245),
               },
             ),
             accentColor: const Color.fromARGB(255, 231, 80, 90)),

@@ -53,9 +53,9 @@ class NearbyHospitalsScreen extends StatelessWidget {
                                 Uri.parse(hospital.get()[index].url),
                                 mode: LaunchMode.externalApplication);
                           },
-                          child: Row(
+                          child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const [
+                            children: [
                               Icon(Icons.location_pin),
                               Text('الموقع')
                             ],

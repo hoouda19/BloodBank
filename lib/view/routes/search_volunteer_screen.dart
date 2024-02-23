@@ -46,156 +46,173 @@ class SearchVolunteerScreen extends StatelessWidget {
                       .where('bloodtype', isEqualTo: userEmail)
                       .snapshots(),
                   builder: (context, snapshot) {
-                    return ListView(
-                      children: snapshot.data!.docs.map((e) {
-                        return Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 10),
-                          padding: const EdgeInsets.all(20),
-                          height: 170,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    blurStyle: BlurStyle.outer,
-                                    spreadRadius: 1,
-                                    blurRadius: 1),
-                              ]),
-                          width: double.infinity,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8.0),
-                                child: Image.asset(
-                                  'asset/images/person.png',
-                                  width: 50,
-                                  height: 50,
+                    return !(snapshot.connectionState ==
+                            ConnectionState.waiting)
+                        ? ListView(
+                            children: snapshot.data!.docs.map((e) {
+                              return Container(
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                padding: const EdgeInsets.all(20),
+                                height: 170,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          blurStyle: BlurStyle.outer,
+                                          spreadRadius: 1,
+                                          blurRadius: 1),
+                                    ]),
+                                width: double.infinity,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0),
+                                      child: Image.asset(
+                                        'asset/images/person.png',
+                                        width: 50,
+                                        height: 50,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 13,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        TextWidget(
+                                          text: e['name'].toString(),
+                                          size: 18,
+                                        ),
+                                        const SizedBox(
+                                          height: 13,
+                                        ),
+                                        TextWidget(
+                                            text: e['city'].toString(),
+                                            size: 16,
+                                            color: Colors.grey),
+                                      ],
+                                    ),
+                                    const Spacer(),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        InkWell(
+                                          onTap: () async {
+                                            await launchUrl(
+                                                Uri(
+                                                    scheme: 'tel',
+                                                    path:
+                                                        e['number'].toString()),
+                                                mode: LaunchMode
+                                                    .externalApplication);
+                                          },
+                                          child: Container(
+                                            height: 35,
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                      color: Colors.black12,
+                                                      blurStyle:
+                                                          BlurStyle.outer,
+                                                      spreadRadius: 1,
+                                                      blurRadius: 5),
+                                                ]),
+                                            child: const Center(
+                                                child: Icon(
+                                              Icons.call,
+                                              color: Color.fromARGB(
+                                                  255, 231, 80, 90),
+                                            )),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        InkWell(
+                                          onTap: () {
+                                            // FirebaseFirestore.instance
+                                            //     .collection('chats')
+                                            //     .doc(e['email'])
+                                            //     .set({
+                                            //   'chat': ['', '']
+                                            // });
+                                            Navigator.of(context).pushNamed(
+                                                ChatScreen.routeName,
+                                                arguments:
+                                                    e['email'].toString());
+                                          },
+                                          child: Container(
+                                            height: 35,
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                      color: Colors.black12,
+                                                      blurStyle:
+                                                          BlurStyle.outer,
+                                                      spreadRadius: 1,
+                                                      blurRadius: 5),
+                                                ]),
+                                            child: const Center(
+                                                child: Icon(
+                                              Icons.message_outlined,
+                                              color: Color.fromARGB(
+                                                  255, 231, 80, 90),
+                                            )),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 10),
+                                        InkWell(
+                                          onTap: () async {
+                                            await launchUrl(
+                                                Uri.parse(
+                                                    'https://wa.me/20${e['number'].toString()}'),
+                                                mode: LaunchMode
+                                                    .externalApplication);
+                                          },
+                                          child: Container(
+                                            height: 35,
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                                boxShadow: const [
+                                                  BoxShadow(
+                                                      color: Colors.black12,
+                                                      blurStyle:
+                                                          BlurStyle.outer,
+                                                      spreadRadius: 1,
+                                                      blurRadius: 5),
+                                                ]),
+                                            child: Center(
+                                                child: Image.asset(
+                                                    'asset/images/whatsapp.png')),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              const SizedBox(
-                                width: 13,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  TextWidget(
-                                    text: e['name'].toString(),
-                                    size: 18,
-                                  ),
-                                  const SizedBox(
-                                    height: 13,
-                                  ),
-                                  TextWidget(
-                                      text: e['city'].toString(),
-                                      size: 16,
-                                      color: Colors.grey),
-                                ],
-                              ),
-                              const Spacer(),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () async {
-                                      await launchUrl(
-                                          Uri(
-                                              scheme: 'tel',
-                                              path: e['number'].toString()),
-                                          mode: LaunchMode.externalApplication);
-                                    },
-                                    child: Container(
-                                      height: 35,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: Colors.black12,
-                                                blurStyle: BlurStyle.outer,
-                                                spreadRadius: 1,
-                                                blurRadius: 5),
-                                          ]),
-                                      child: const Center(
-                                          child: Icon(
-                                        Icons.call,
-                                        color: Color.fromARGB(255, 231, 80, 90),
-                                      )),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  InkWell(
-                                    onTap: () {
-                                      // FirebaseFirestore.instance
-                                      //     .collection('chats')
-                                      //     .doc(e['email'])
-                                      //     .set({
-                                      //   'chat': ['', '']
-                                      // });
-                                      Navigator.of(context).pushNamed(
-                                          ChatScreen.routeName,
-                                          arguments: e['email'].toString());
-                                    },
-                                    child: Container(
-                                      height: 35,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: Colors.black12,
-                                                blurStyle: BlurStyle.outer,
-                                                spreadRadius: 1,
-                                                blurRadius: 5),
-                                          ]),
-                                      child: const Center(
-                                          child: Icon(
-                                        Icons.message_outlined,
-                                        color: Color.fromARGB(255, 231, 80, 90),
-                                      )),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  InkWell(
-                                    onTap: () async {
-                                      await launchUrl(
-                                          Uri.parse(
-                                              'https://wa.me/20${e['number'].toString()}'),
-                                          mode: LaunchMode.externalApplication);
-                                    },
-                                    child: Container(
-                                      height: 35,
-                                      width: 50,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                                color: Colors.black12,
-                                                blurStyle: BlurStyle.outer,
-                                                spreadRadius: 1,
-                                                blurRadius: 5),
-                                          ]),
-                                      child: Center(
-                                          child: Image.asset(
-                                              'asset/images/whatsapp.png')),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        );
-                      }).toList(),
-                    );
+                              );
+                            }).toList(),
+                          )
+                        : const Center(
+                            child: CircularProgressIndicator(),
+                          );
                   },
                 )),
           ),

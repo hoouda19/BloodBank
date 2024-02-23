@@ -47,10 +47,10 @@ class RequestScreen extends StatelessWidget {
                           const SizedBox(
                             width: 13,
                           ),
-                          Column(
+                          const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               TextWidget(
                                   text: 'user@gmail.com',
                                   size: 18,

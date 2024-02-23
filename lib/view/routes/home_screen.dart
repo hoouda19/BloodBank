@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context).size;
     final userEmail = ModalRoute.of(context)!.settings.arguments as String;
     return SizedBox(
       width: double.infinity,
@@ -24,14 +25,13 @@ class HomeScreen extends StatelessWidget {
               isButton: true,
               picture: Image.asset(
                 'asset/images/homebar.png',
-                // height: MediaQuery.of(context).size.height * 0.03, //image size
               ),
             )), //AppBar Widget
         Expanded(
           flex: 8,
           child: Column(
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              SizedBox(height: mediaQuery.height * 0.03),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -43,8 +43,6 @@ class HomeScreen extends StatelessWidget {
                         NewDonorScreen.routeName,
                         arguments: userEmail),
                   ),
-
-                  //ContainerMariem
                   homeContainerTap(
                     image: 'asset/images/home.png',
                     text: 'ابحث عن متبرع',
@@ -54,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              SizedBox(height: mediaQuery.height * 0.05),
               homeContainerTap(
                   image: 'asset/images/home3.png',
                   text: 'مشاركة التطبيق',
@@ -62,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   onTap: () async {
                     await Share.share('https://bloodband/app.com');
                   }),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+              SizedBox(height: mediaQuery.height * 0.03),
               InkWell(
                 onTap: () => Navigator.of(context)
                     .pushNamed(InstructionsScreen.routeName),
@@ -76,8 +74,8 @@ class HomeScreen extends StatelessWidget {
                             spreadRadius: 2.5,
                             blurRadius: 20),
                       ]),
-                  height: MediaQuery.of(context).size.height * 0.07,
-                  width: MediaQuery.of(context).size.width * 0.35,
+                  height: mediaQuery.height * 0.07,
+                  width: mediaQuery.width * 0.35,
                   child: const Center(
                       child: Text(
                     'نصائح وارشادات',
