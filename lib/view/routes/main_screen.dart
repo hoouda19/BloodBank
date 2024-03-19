@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,8 +22,8 @@ int index = 2;
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    final userEmail = ModalRoute.of(context)!.settings.arguments as String;
-
+    // final userEmail = ModalRoute.of(context)!.settings.arguments as String;
+    final firebaseInstance = FirebaseAuth.instance.currentUser!.email;
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
@@ -49,13 +50,13 @@ class _MainScreenState extends State<MainScreen> {
             });
           },
         ),
-        endDrawer: DrawerWidget(userEmail: userEmail.toString()),
+        endDrawer: DrawerWidget(userEmail: firebaseInstance!),
         backgroundColor: Colors.white,
         body: index == 1
             ? const NearbyHospitalsScreen()
             : index == 2
                 ? const HomeScreen()
-                : ProfileScreen(userEmail: userEmail.toString()),
+                : ProfileScreen(userEmail: firebaseInstance),
       ),
     );
   }

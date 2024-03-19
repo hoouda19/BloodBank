@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../routes/login_screen.dart';
@@ -6,9 +8,30 @@ import '../routes/request_screen.dart';
 import 'appbar_homepage_widget.dart';
 import 'drawer_button.dart' as drawer;
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
   final String userEmail;
   const DrawerWidget({super.key, this.userEmail = 'مستخدم كا ضيف'});
+
+  @override
+  State<DrawerWidget> createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
+  String name = 'Geust';
+  final users = FirebaseFirestore.instance.collection('users');
+  void fireStore() async {
+    final snapshot = await users.doc(widget.userEmail).get();
+    final data = snapshot.data()!;
+    setState(() {
+      name = data['name'];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fireStore();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +67,7 @@ class DrawerWidget extends StatelessWidget {
                     height: MediaQuery.of(context).size.width * 0.02,
                   ),
                   Text(
-                    userEmail,
+                    name,
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   )
                 ],
@@ -66,7 +89,7 @@ class DrawerWidget extends StatelessWidget {
                     icon: Icons.messenger_outline_rounded,
                     ontap: () => Navigator.of(context).pushNamed(
                         MessengeScreen.routeName,
-                        arguments: userEmail),
+                        arguments: widget.userEmail),
                   ),
                   drawer.DrawerButton(
                       text: 'الطلبات',
@@ -81,8 +104,7 @@ class DrawerWidget extends StatelessWidget {
                   drawer.DrawerButton(
                       text: 'تسجيل خروج',
                       icon: Icons.logout_rounded,
-                      ontap: () => Navigator.of(context)
-                          .pushNamed(LogInScreen.routeName)),
+                      ontap: () => FirebaseAuth.instance.signOut()),
                 ],
               ),
             ),

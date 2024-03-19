@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/': (context) => const SplashScreen(),
+        '/': (context) => OnboardScreen(),
         OnboardScreen.routeName: (context) => OnboardScreen(),
         MainScreen.routeName: (context) => const MainScreen(),
         HomeScreen.routeName: (context) => const HomeScreen(),
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         InstructionsScreen.routeName: (context) => const InstructionsScreen(),
         NearbyHospitalsDetailsScreen.routeName: (context) =>
             const NearbyHospitalsDetailsScreen(),
-        ReceiveChatScreen.routeName: (context) => ReceiveChatScreen(),
+        ReceiveChatScreen.routeName: (context) => const ReceiveChatScreen(),
       },
     );
   }

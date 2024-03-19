@@ -19,17 +19,28 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  String name = 'Geust';
+  String bloodType = 'A+';
+  final users = FirebaseFirestore.instance.collection('users');
+  void fireStore() async {
+    final snapshot = await users.doc(widget.userEmail).get();
+    final data = snapshot.data()!;
+    setState(() {
+      name = data['name'];
+      bloodType = data['bloodtype'];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    fireStore();
+  }
+
   @override
   Widget build(BuildContext context) {
     CollectionReference users = FirebaseFirestore.instance.collection('users');
-    // Future getDocs() async {
-    //   QuerySnapshot querySnapshot =
-    //       await FirebaseFirestore.instance.collection("collection").get();
-    //   for (int i = 0; i < querySnapshot.docs.length; i++) {
-    //     var a = querySnapshot.docs[i];
-    //     print(a.data());
-    //   }
-    // }
 
     users;
     return SizedBox(
@@ -61,16 +72,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        const BloodWidget(
+                        BloodWidget(
                             bloodTybe:
-                                'A+') // this widget to show the blood type
+                                bloodType) // this widget to show the blood type
                       ],
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.width * 0.02,
                     ),
                     TextWidget(
-                      text: widget.userEmail,
+                      text: name,
                       size: 15,
                       weight: FontWeight.bold,
                     ),

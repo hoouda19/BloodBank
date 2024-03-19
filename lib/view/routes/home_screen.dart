@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -14,7 +15,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context).size;
-    final userEmail = ModalRoute.of(context)!.settings.arguments as String;
+    // final userEmail = ModalRoute.of(context)!.settings.arguments as String;
+    final firebaseInstance = FirebaseAuth.instance.currentUser!.email;
     return SizedBox(
       width: double.infinity,
       child:
@@ -41,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                     context: context,
                     onTap: () => Navigator.of(context).pushNamed(
                         NewDonorScreen.routeName,
-                        arguments: userEmail),
+                        arguments: firebaseInstance),
                   ),
                   homeContainerTap(
                     image: 'asset/images/home.png',

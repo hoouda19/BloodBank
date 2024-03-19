@@ -1,7 +1,11 @@
+import 'package:bloodbank/view/routes/Splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../model/onboard_page_model.dart';
 import '../widgets/onboard_container.dart';
+import 'home_screen.dart';
+import 'main_screen.dart';
 
 class OnboardScreen extends StatelessWidget {
   static const routeName = '/onboardScreen';
@@ -19,19 +23,34 @@ class OnboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Scaffold(
-            body: PageView.builder(
-          itemBuilder: (context, index) => onBoardContainer(
-              onBoradList[index].subtitle,
-              onBoradList[index].image,
-              onBoradList[index].sec,
-              index),
-          itemCount: onBoradList.length,
-          controller: contrpage,
-        )),
-      ],
+    return StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SplashScreen();
+        }
+
+        if (snapshot.hasError) {
+          return const Center(child: Text('خطأ في الاتصال'));
+        }
+        if (snapshot.hasData) {
+          return const Scaffold(body: MainScreen());
+        }
+        return Stack(
+          children: [
+            Scaffold(
+                body: PageView.builder(
+              itemBuilder: (context, index) => onBoardContainer(
+                  onBoradList[index].subtitle,
+                  onBoradList[index].image,
+                  onBoradList[index].sec,
+                  index),
+              itemCount: onBoradList.length,
+              controller: contrpage,
+            )),
+          ],
+        );
+      },
     );
   }
 }
